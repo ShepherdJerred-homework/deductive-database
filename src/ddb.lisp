@@ -1,1 +1,2 @@
-(defun ddb () ())
+(defun ? ()
+  ('YES))
