@@ -29,34 +29,34 @@
 (and
   (equal
     (?
-      '(mortal x)
-      '(SOCRATES PLATO FIDO LASSIE FELIX LEO))
-   (equal
-     (?
-       '(mortal fido)
-       'YES) 
-    (equal
-      (?
-        '(dog socrates)
-        'NO))
-    (equal
-      (?
-        '(likes y fido)
-        '(PAVLOV)))
-    (equal
-      (?
-        '(hates y fido)
-        '(FIDO LASSIE JOHN)))
-    (equal
-      (?
-        '(hates fido y)
-        'YES))
-    (equal
-      (?
-        '(mammal z)
-        '(FIDO LASSIE SOCRATES PLATO FELIX LEO)))
-    (equal
-      (?
-        '(wb z)
-        '(FIDO LASSIE SOCRATES PLATO FELIX LEO))))))
+      '(mortal x))
+    '(SOCRATES PLATO FIDO LASSIE FELIX LEO))
+  (equal
+    (?
+      '(mortal fido))
+    'YES) 
+  (equal
+    (?
+      '(dog socrates))
+    'NO)
+  (equal
+    (?
+      '(likes y fido))
+    '(PAVLOV))
+  (equal
+    (?
+      '(hates y fido))
+    '(FIDO LASSIE JOHN))
+  (equal
+    (?
+      '(hates fido y))
+    'YES)
+  (equal
+    (?
+      '(mammal z))
+    '(FIDO LASSIE SOCRATES PLATO FELIX LEO))
+  (equal
+    (?
+      '(wb z))
+    '(FIDO LASSIE SOCRATES PLATO FELIX LEO)))
 
