@@ -6,7 +6,7 @@
       (T (dog fido))
       (T (dog lassie))
       ((dog x1) (mammal x1))
-      ((mammal x1) (wb x2))
+      ((mammal x2) (wb x2))
       ((cat x3) (feline x3))
       (T (cat felix))
       ((man x4) (mortal x4))

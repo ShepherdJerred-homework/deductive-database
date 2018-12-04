@@ -34,10 +34,21 @@
         (query-bool query (cdr db) origdb)))))
 
 (defun query-list (query db origdb)
- nil) 
+  (let* ((db-entry (car db))
+         (antecedent (car db-entry))
+         (consequent (cadr db-entry))
+         (unify-result (unify query consequent)))
+    (if unify-result
+      (if (eq antecedent T)
+        (cons (cadr consequent) (query-list query (cdr db) origdb))
+        (let ((new-query (apply-subs antecedent unify-result)))
+          (cons (query-list new-query origdb origdb) (query-list query (cdr db) origdb))))
+      (if (null (cdr db))
+        'nil
+        (query-list query (cdr db) origdb)))))
 
 (defun ? (query)
   (if (eq (type-of-query query) 'BOOL)
     (query-bool query db db)
-    (query-list query)))
+    (query-list query db db)))
 
