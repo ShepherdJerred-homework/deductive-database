@@ -4,16 +4,16 @@
   (setq db
     '(
       (T (dog fido))
-      (T dog lassie)
-      ((dog x1 (mammal x1)))
-      (mammal x1) (wb x2)
+      (T (dog lassie))
+      ((dog x1) (mammal x1))
+      ((mammal x1) (wb x2))
       ((cat x3) (feline x3))
       (T (cat felix))
       ((man x4) (mortal x4))
       (T (man Socrates))
       (T (man Plato))
       ((dog x5) (likes Pavlov x5))
-      ((dog x6 (mortal x6)))
+      ((dog x6) (mortal x6))
       ((man x7) (mammal x7))
       ((feline x8) (mammal x8))
       ((lion x9) (feline x9))
@@ -24,27 +24,13 @@
       (T (student John))
       (T (student Mary))
       ((dog x14) (hates John x14))))
-  (trace ?))
+  (trace unify)
+  (trace ?)
+  (trace query-bool)
+  (trace query-list))
 
-(and
-  (equal
-    (isvar 'x)
-    T)
-  (equal
-    (isvar 'a)
-    NIL)
-  (equal
-    (type-of-query '(predicate x))
-    'LIST)
-  (equal
-    (type-of-query '(predicate a))
-    'BOOL)
-  (equal
-    (type-of-query '(predicate x a))
-    'LIST)
-  (equal
-    (type-of-query '(predicate a x))
-    'BOOL))
+(setq db '((T (dog fido))
+           ((dog x1) (mortal x1))))
 
 (and
   (equal
@@ -79,4 +65,24 @@
     (?
       '(wb z))
     '(FIDO LASSIE SOCRATES PLATO FELIX LEO)))
+
+(and
+  (equal
+    (isvar 'x)
+    T)
+  (equal
+    (isvar 'a)
+    NIL)
+  (equal
+    (type-of-query '(predicate x))
+    'LIST)
+  (equal
+    (type-of-query '(predicate a))
+    'BOOL)
+  (equal
+    (type-of-query '(predicate x a))
+    'LIST)
+  (equal
+    (type-of-query '(predicate a x))
+    'BOOL))
 
