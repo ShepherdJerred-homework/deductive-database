@@ -28,6 +28,26 @@
 
 (and
   (equal
+    (isvar 'x)
+    T)
+  (equal
+    (isvar 'a)
+    NIL)
+  (equal
+    (type-of-query '(predicate x))
+    'LIST)
+  (equal
+    (type-of-query '(predicate a))
+    'BOOL)
+  (equal
+    (type-of-query '(predicate x a))
+    'LIST)
+  (equal
+    (type-of-query '(predicate a x))
+    'BOOL))
+
+(and
+  (equal
     (?
       '(mortal x))
     '(SOCRATES PLATO FIDO LASSIE FELIX LEO))
