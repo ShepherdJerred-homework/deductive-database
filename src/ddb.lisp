@@ -40,9 +40,9 @@
          (unify-result (unify query consequent)))
     (if unify-result
       (if (eq antecedent T)
-        (cons (cadr consequent) (query-list query (cdr db) origdb))
+        (append (cdr consequent) (query-list query (cdr db) origdb))
         (let ((new-query (apply-subs antecedent unify-result)))
-          (cons (query-list new-query origdb origdb) (query-list query (cdr db) origdb))))
+          (append (query-list new-query origdb origdb) (query-list query (cdr db) origdb))))
       (if (null (cdr db))
         'nil
         (query-list query (cdr db) origdb)))))
