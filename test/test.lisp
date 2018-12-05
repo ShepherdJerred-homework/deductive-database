@@ -26,11 +26,15 @@
       ((dog x14) (hates John x14))))
   (trace unify)
   (trace ?)
+  (trace prove)
   (trace query-bool)
   (trace query-list))
 
 (setq db '((T (dog fido))
            ((dog x1) (mortal x1))))
+
+(setq db '((T (dog fido))
+           ((dog x5) (likes Pavlov x5))))
 
 (and
   (equal
@@ -65,6 +69,12 @@
     (?
       '(wb z))
     '(FIDO LASSIE SOCRATES PLATO FELIX LEO)))
+
+(and
+  (equal
+    (?
+      '(dog fido))
+    T))
 
 (and
   (equal
