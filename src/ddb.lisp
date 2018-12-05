@@ -1,25 +1,18 @@
 ;;; Takes a term and applies a substitution to it
 ;;; sub is the form of (X . B) where X is the target and B is the replacement value 
-(defun apply-one-sub
-  (term sub)
-  (let
-    (
-      (sub-key (car sub))
-      (sub-value (cdr sub)))
-    (if
-      (eq term sub-key)
+(defun apply-one-sub (term sub)
+  (let ((sub-key (car sub))
+        (sub-value (cdr sub)))
+    (if (eq term sub-key)
       sub-value
-      (if
-        (atom term)
+      (if (atom term)
         term
         (cons (apply-one-sub (car term) sub) (apply-one-sub (cdr term) sub))))))
 
 ;;; Apply subs to a term
 ;;; subs follows this form ((X . B))
-(defun apply-subs
-  (term subs)
-  (if
-    (atom subs)
+(defun apply-subs (term subs)
+  (if (atom subs)
     (apply-one-sub term (car subs))
     (apply-subs (apply-one-sub term (car subs)) (cdr subs))))
 
@@ -28,6 +21,15 @@
   (if (member term '(u v w x y z x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12 x13 x14 x15 x16 x17 x18 x19 x20))
     t
     nil))
+
+(defun find-vars (term)
+  (if (atom term)
+    (if (isvar term)
+      term
+      nil)
+    (if (isvar (car term))
+      (cons (car term) (find-vars (cdr term)))
+      (find-vars (cdr term)))))
 
 ;;; Takes a DDB query and returns the type of query it is
 ;;; query should match one of the below formats
